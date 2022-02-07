@@ -16,20 +16,38 @@ let clearButton = document.getElementById('clear');
 let list = document.querySelector('ul');
 
 let toDoArray = [];
+const data = JSON.parse(localStorage.getItem('items'));
 
-function makeToDo () {
-    document.createElement('li').innerHTML(textInput.value);
+toDoArray = localStorage.getItem('items')
+? JSON.parse(localStorage.getItem('items'))
+: '';
+
+function makeToDo (text) {
+    const toDo = document.createElement('li');
+    toDo.innerHTML = text;
+    list.appendChild(toDo);
 }
+
 
 submitButton.addEventListener('click', function() {
     toDoArray.push(textInput.value);
     console.log(toDoArray);
-
+    
     localStorage.setItem('items', JSON.stringify(toDoArray));
+    makeToDo(textInput.value);
+    textInput = '';
+    
+})
 
+data.forEach((item) => {
+    makeToDo(item);
 })
 
 clearButton.addEventListener('click', function() {
-    localStorage.clear();
+    localStorage.clear()
+    // while (list.firstChild) {
+    //     list.removeChild(list.firstChild)
+    // }
 })
+
 
