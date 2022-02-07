@@ -12,6 +12,7 @@ TO DO LIST
 let textInput = document.getElementById('toDo');
 // let form = document.querySelector('form');
 let submitButton = document.getElementById('submitButton');
+let clearButton = document.getElementById('clear');
 let list = document.querySelector('ul');
 
 let toDoArray = [];
@@ -24,8 +25,11 @@ submitButton.addEventListener('click', function() {
     toDoArray.push(textInput.value);
     console.log(toDoArray);
 
+    localStorage.setItem('items', JSON.stringify(toDoArray));
 
-    // localStorage.setItem('items', JSON.stringify(toDoArray));
+})
 
+clearButton.addEventListener('click', function() {
+    localStorage.clear();
 })
 
